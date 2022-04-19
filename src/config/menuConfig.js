@@ -12,6 +12,7 @@ import {
 } from '@ant-design/icons';
 const menuList = [
   {
+    isPublic: true,
     title: '首页',
     path: 'home',
     icon: <DesktopOutlined/>,
@@ -28,7 +29,7 @@ const menuList = [
       },
       {
         title: '商品管理',
-        path: 'product',
+        path: 'product/product_home',
         icon: <ToolOutlined />,
       },
     ]
@@ -51,12 +52,12 @@ const menuList = [
       {
         title: '折线图',
         path: 'line',
-        icon: <BarChartOutlined />,
+        icon: <LineChartOutlined />,
       },
       {
         title: '柱状图',
         path: 'bar',
-        icon: <LineChartOutlined />,
+        icon: <BarChartOutlined />,
       },
       {
         title: '饼图',

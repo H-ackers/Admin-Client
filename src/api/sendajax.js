@@ -35,7 +35,7 @@ export default function sendAJAX(url, data={}, type='GET'){
         message.error(msg);
       }
       // console.log(response.data);
-      console.log(response);
+      // console.log(response);   //  查看发送请求的响应体
     }).catch(error => {
         console.warn(error);
         message.error(error + ' 网络异常!');

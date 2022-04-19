@@ -6,3 +6,5 @@
 export const USERNAME = 'username'
 export const WEATHERINFO = 'weatherInfo'
 export const SUBMENU = 'subMenu'
+export const PATH = 'path'
+export const FILE = 'file'

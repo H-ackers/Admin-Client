@@ -1,5 +1,5 @@
 import React,{ useState,useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 
 import { Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -53,6 +53,7 @@ export default function Header() {
       onOk() {
         // 1.删除保存的数据
         storageUtils.removeMenu();
+        storageUtils.removePath();
         storageUtils.removeWeather();
         storageUtils.removeUser();
         memoryUtils.user = {};

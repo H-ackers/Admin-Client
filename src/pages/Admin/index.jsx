@@ -20,9 +20,9 @@ export default function Admin() {
 
   reqWeather('110000');
   const {username} = memoryUtils.user;
-  console.log(username);
+  // console.log(username);
   const user = storageUtils.getUser().username;
-  console.log(user);
+  // console.log(user);
   return (
     <Fragment>
       <Layout hasSider style={{height: '100%'}}>
@@ -40,14 +40,17 @@ export default function Admin() {
         </Sider>
         <Layout style={{ marginLeft: 200 }}>
           <Header style={{ padding: 0 }}/>
-          <Content style={{ 
-            margin: '24px 16px 0',
-            overflow: 'auto',
-            background:'#fff'
-          }}>
-            <Outlet />
+          <Content 
+            style={{ 
+              margin: '24px 16px 0',
+              overflow: 'auto',
+              background:'#fff'
+            }}
+          >
+            <div style={{minHeight:'100%'}}><Outlet /></div>
+            <Footer />
           </Content>
-          <Footer />
+          
         </Layout>
       </Layout>
     </Fragment>

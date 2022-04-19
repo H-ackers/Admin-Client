@@ -19,6 +19,9 @@ import Line from "../pages/Charts/line";
 import Pie from "../pages/Charts/pie";
 
 // 三级路由
+import ProductHome from "../pages/Product/ProductHome";
+import AddUpdate from "../pages/Product/AddUpdate";
+import Detail from "../pages/Product/Detail";
 
 
 
@@ -42,7 +45,21 @@ export default [
       },
       {
         path:'product',
-        element:<Product/>
+        element:<Product/>,
+        children:[
+          {
+            path:'product_home',
+            element:<ProductHome/>
+          },
+          {
+            path:'addupdate',
+            element:<AddUpdate/>
+          },
+          {
+            path:'detail',
+            element:<Detail/>
+          },
+        ]
       },
       {
         path:'user',

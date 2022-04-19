@@ -17,7 +17,7 @@ export default function Demo() {
 
     // 使用 then() 方法获取响应内容
     response.then(value => {
-      console.log(value);
+      // console.log(value);
     const {response} = value.request;
     const resp = JSON.parse(response);
     const {status,data} = resp;
@@ -37,7 +37,7 @@ export default function Demo() {
         className="login-form"
         initialValues={{
           remember: true,
-          username: 'admin1'
+          username: 'admin'
         }}
         onFinish={onFinish}
       >
@@ -50,9 +50,9 @@ export default function Demo() {
               message: '请输入您的用户名!',
             },
             {
-              min: 6,
+              min: 5,
               max: 12,
-              message: '用户名最少6位,不得超过12位!',
+              message: '用户名最少5位,不得超过12位!',
             },
             {
               pattern: /^[a-zA-Z][0-9a-zA-Z_]+$/,
@@ -70,9 +70,9 @@ export default function Demo() {
               message: '请输入您的密码!',
             },
             {
-              min: 6,
+              min: 5,
               max: 12,
-              message: '密码至少6位,不大于12位!',
+              message: '密码至少5位,不大于12位!',
             },
             {
               pattern: /^[a-zA-Z0-9]+[0-9a-zA-Z_]+$/,

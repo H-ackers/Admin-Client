@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Model from '../User/UserForm/test';
 
 // 柱状图
 export default function Bar() {
   return (
-    <div>Bar1</div>
+    <div>
+      <Model />
+    </div>
   )
 }

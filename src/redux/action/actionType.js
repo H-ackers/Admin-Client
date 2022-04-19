@@ -1,1 +1,2 @@
-export const SAVE = 'save';
+export const GETCATEGORY = 'getCategory';
+export const GETPRODUCT = 'getProduct';

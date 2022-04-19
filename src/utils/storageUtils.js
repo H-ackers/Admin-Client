@@ -3,7 +3,7 @@
 */ 
 
 import store from 'store';
-import { USERNAME, WEATHERINFO, SUBMENU } from './constant'
+import { USERNAME, WEATHERINFO, SUBMENU, PATH } from './constant'
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   // 保存 user
@@ -39,12 +39,26 @@ export default {
   saveMenu(subMenu){
     store.set(SUBMENU, subMenu);
   },
-  // 读取 weather
+  // 读取 subMenu
   getMenu(){
     return store.get(SUBMENU) || {};
   },
-  // 删除 weather
+  // 删除 subMenu
   removeMenu(){
     store.remove(SUBMENU);
-  }
+  },
+
+  // 保存 path
+  savePath(path){
+    store.set(PATH, path);
+  },
+  // 读取 path
+  getPath(){
+    return store.get(PATH) || {};
+  },
+  // 删除 path
+  removePath(){
+    store.remove(PATH);
+  },
+
 }
