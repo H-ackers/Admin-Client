@@ -1,70 +1,121 @@
-# Getting Started with Create React App
+##  一、高阶函数
+      1.高阶函数是一类特别的函数
+        - 接收函数类型的参数
+        - 返回值是函数
+      2.常见的高阶函数
+        - 定(计)时器：setTimeout() 、setInterval()
+        - Promise: Promise( () => {} ) 、Promise.then( value => {}, reason => {} )
+        - 数组遍历相关的方法：forEach() / filter() / map() / reduce() / find() / findIndex()
+        - 函数对象的 bind() 方法
+      3.高阶函数更加动态，更具有扩展性
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+##  二、高阶组件
+      1.本质就是一个函数
+      2.特点：接收一个组件(被包装组件)，返回一个新的组件(包装组件)，包装组件会向北包装组件传入特定属性
+      3.作用：扩展组件的功能
+      4.高阶组件也是高阶函数：接收一个组件函数，返回的是一个新的组件函数
 
-## Available Scripts
+##  三、常用的字符串截取方法
+      1.取字符串的前i个字符
+        str=str.substring(0,i);
 
-In the project directory, you can run:
+      2.去掉字符串的前i个字符
+        str=str.substring(i); 
 
-### `npm start`
+      3.从右边开始取i个字符
+        str=str.substring(str.length()-i); 
+        str=str.substring(str.length()-i,str.length()); 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+      4.从右边开始去掉i个字符
+        str=str.substring(0,str.Length-i);
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+      5.从开始截取到中间某个指定字符  midChar (该字符出现的第一次)
+        str=str.substring(0,str.indexOf(midChar));
+        
+      6.从开始截取到指定某段字符串结尾  midStr
+        str=str.substring(0,str.indexOf(midStr)+midStr.length());
+        
+      7.如果字符串中有"abc"则替换成"ABC"
+        str=str.replace("abc","ABC");
 
-### `npm test`
+##  四、函数式组件父组件调用子组件的方法
+      优点：
+          1、写法简单易懂
+          2、假如子组件嵌套了HOC，也可以指向真实子组件
+      缺点：
+          1、需要自定义props属性
+          2、需要自定义暴露的方法
+```js
+      // 父组件
+      import React from 'react';
+      import Child from './Child';
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+      const Parent = () => {
+        let ChildRef = React.useRef();
 
-### `npm run build`
+        // 调用子组件的方法的回调
+        function handleOnClick() {
+          ChildRef.current.getDetail();
+        }
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+        return (
+          <div>
+            <button onClick={handleOnClick}>点击调用子组件的方法</button>
+            <Child onRef={ChildRef} />
+          </div>
+        )
+      }
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+      export default Parent;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+      // 子组件
+      import React, { useState, useEffect, useImperativeHandle } from 'react';
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+      export default function Child(props){
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+        // 用于暴露外部 ref 能访问的属性
+        useImperativeHandle(props.onRef, ()=>{
+          return {
+            getDetail: getDetail,
+          };
+        });
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+        // 给父组件调用子组件的方法提供数据
+        const getDetail = ()=>{
+          console.log('我是子组件的方法，被父组件执行了');
+        };
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        return (
+          <div>子组件</div>
+        );
+      }
+```
 
-## Learn More
+##  五、判断一个对象是否为空对象
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```js
+      方法一：将对象转换成字符串，再判断是否等于“{}”
+      let obj = {};
+      console.log(JSON.stringify(obj)==="{}");  //  返回 true，为空对象
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+      方法二：for in循环
+      let res = function(obj){
+        for(let key in obj){
+          return false;   //  若不为空，可遍历，返回 false
+        }
+        return true;
+      }
+      console.log(res(obj));  //  返回 true，则为空对象
+      
+      方法三：Object.keys()方法，返回对象的属性名组成的一个数组，若长度为0，则为空对象（ES6的写法）
+      console.log(Object.keys(obj).length===0);   //  返回 true，则为空对象
 
-### Code Splitting
+      方法四：Object.getOwnPropertyNames方法获取对象的属性名，存到数组中，若长度为0，则为空对象
+      console.log(Object.getOwnPropertyNames(obj).length==0);   //  返回 true，则为空对象
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+      方法五：jQuery中的isEmptyObject()方法，其原理是利用for in的方式来判断（注意：使用这种方式记得引用jquery）
+      console.log($.isEmptyObject(obj));    //  返回 true， 则为空对象
+```
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##  六、
