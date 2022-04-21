@@ -29,7 +29,7 @@ export default function Category() {
   // 用于控制重载页面
   const [list, setList] = useState();
   // 添加向二级列表过渡时 loading 效果
-  const [loading,setLoading] = useState(false);
+  const [loading,setLoading] = useState(true);
   // 控制 添加/修改分类的模态框的展示状态
   const [isModalVisible, setIsModalVisible] = useState(false);
   // 选择性展示模态框内容
