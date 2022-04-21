@@ -11,16 +11,10 @@ const Item = Form.Item
 export default function Demo() {
   const navigate = useNavigate();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     const {username, password} = values;   //  获取输入的用户名和密码
-    const response = reqLogin(username, password);
-
-    // 使用 then() 方法获取响应内容
-    response.then(value => {
-      // console.log(value);
-    const {response} = value.request;
-    const resp = JSON.parse(response);
-    const {status,data} = resp;
+    const res = await reqLogin(username, password);
+    const {status,data} = res.data;
       if(status === 0){
         // 保存 user
         memoryUtils.user = data;
@@ -28,8 +22,7 @@ export default function Demo() {
         message.success('欢迎回来~!');
         navigate('/admin/home?title=首页',{replace: true});
       }
-    });
-  }
+    };
 
     return ( 
       <Form

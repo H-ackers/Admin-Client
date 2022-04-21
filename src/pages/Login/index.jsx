@@ -4,7 +4,7 @@ import React,{ useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Demo from '../../components/Demo';
 import './index.less';
-import logo from '../../assets/images/cat (3).png';
+import logo from '../../assets/images/codecat.ico';
 import memoryUtils from '../../utils/memoryUtils';
 
 

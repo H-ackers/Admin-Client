@@ -1,8 +1,8 @@
 // 后台管理的路由组件
 // 
 
-import React, { Fragment } from 'react';
-import { Outlet } from 'react-router-dom';
+import React, { Fragment, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { reqWeather } from '../../api';
@@ -17,6 +17,14 @@ const { Sider, Content } = Layout;
 
 
 export default function Admin() {
+
+  const navigate = useNavigate();
+  useEffect(() => { 
+    const user = memoryUtils.user;
+    if(user && user._id){
+      navigate('/admin/home?title=首页', {replace: true});
+    }
+  }, []);
 
   reqWeather('110000');
   const {username} = memoryUtils.user;

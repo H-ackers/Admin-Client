@@ -6,7 +6,7 @@ import menuList from '../../config/menuConfig';
 import storageUtils from '../../utils/storageUtils';
 import memoryUtils from '../../utils/memoryUtils';
 import './index.less';
-import logo from '../../assets/images/cat (3)~1.ico';
+import logo from '../../assets/images/codecat.ico';
 
 const { SubMenu } = Menu;
 

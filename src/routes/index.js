@@ -6,6 +6,7 @@
 import { Navigate } from "react-router-dom";
 import Login from "../pages/Login";
 import Admin from "../pages/Admin";
+import NoFound from "../components/NoFound";
 
 // 二级路由
 import Home from "../pages/Home";
@@ -25,11 +26,14 @@ import Detail from "../pages/Product/Detail";
 
 
 
+
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
+  
   {
     path: '/login',
-    element:<Login/>
+    element:<Login/>,
   },
   {
     path: '/admin',
@@ -87,5 +91,9 @@ export default [
   {
     path: '/',
     element:<Navigate to='login'/>
-  }
+  },
+  {
+    path: '*',
+    element: <NoFound/>,
+  },
 ]
