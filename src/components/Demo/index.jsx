@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Form, Input, Button, Checkbox, message } from 'antd';
@@ -6,7 +6,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { reqLogin } from '../../api';
 import memoryUtils from '../../utils/memoryUtils';
 import storageUtils from '../../utils/storageUtils';
-const Item = Form.Item
+const Item = Form.Item;
 
 export default function Demo() {
   const navigate = useNavigate();
